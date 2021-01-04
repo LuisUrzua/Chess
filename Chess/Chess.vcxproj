@@ -139,7 +139,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Chess.cpp" />
+    <ClCompile Include="class\cpp\Square.cpp" />
+    <ClCompile Include="class\cpp\Piece.cpp" />
+    <ClCompile Include="src\Chess.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\const.h" />
+    <ClInclude Include="class\hpp\Square.h" />
+    <ClInclude Include="class\hpp\Piece.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
