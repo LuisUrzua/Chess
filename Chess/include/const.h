@@ -9,6 +9,6 @@ enum Type { Pawn, Knight, Bishop, Rook, Queen, King };
 
 typedef struct _Position
 {
-	int x = -1;
-	int y = -1;
+	int col = -1;
+	int row = -1;
 } Position;

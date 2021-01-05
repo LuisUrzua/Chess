@@ -139,14 +139,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="class\cpp\Bishop.cpp" />
+    <ClCompile Include="class\cpp\Board.cpp" />
     <ClCompile Include="class\cpp\Square.cpp" />
     <ClCompile Include="class\cpp\Piece.cpp" />
+    <ClCompile Include="class\cpp\Pawn.cpp" />
+    <ClCompile Include="class\cpp\Knight.cpp" />
+    <ClCompile Include="class\cpp\Rook.cpp" />
+    <ClCompile Include="class\cpp\Queen.cpp" />
+    <ClCompile Include="class\cpp\King.cpp" />
+    <ClCompile Include="class\cpp\Player.cpp" />
     <ClCompile Include="src\Chess.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="class\hpp\Bishop.h" />
+    <ClInclude Include="class\hpp\Board.h" />
     <ClInclude Include="include\const.h" />
     <ClInclude Include="class\hpp\Square.h" />
     <ClInclude Include="class\hpp\Piece.h" />
+    <ClInclude Include="class\hpp\Pawn.h" />
+    <ClInclude Include="class\hpp\Knight.h" />
+    <ClInclude Include="class\hpp\Rook.h" />
+    <ClInclude Include="class\hpp\Queen.h" />
+    <ClInclude Include="class\hpp\King.h" />
+    <ClInclude Include="class\hpp\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
