@@ -2,17 +2,11 @@
 
 Board::Board()
 {
-    Position position;
-    std::shared_ptr<Square> square;
-
-    for(int col = _A; col <= _H; col++)
+    for (int row = ROW_1; row <= ROW_8; row++)
     {
-        for (int row = _1; row <= _8; row++)
+        for (int col = COL_A; col <= COL_H; col++)
         {
-            position.col = col;
-            position.row = row;
-            square.reset(new Square(position));
-            squares[position] = square;
+            squares[Position(row, col)] = std::shared_ptr<Square>(new Square(Position(row, col)));
         }
     }
 }

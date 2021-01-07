@@ -5,6 +5,7 @@
 class Pawn : public Piece
 {
     public:
+        Pawn(Position, Color, Type);
         void move();
 
     private:

@@ -2,15 +2,15 @@
 
 #include "../../include/const.h"
 #include "Piece.h"
-#include <vector>
+#include <map>
 #include <memory>
 
 class Player
 {
     public:
-        //Player();
+        Player(Color);
 
     private:
-        //Color color;
-        std::vector<std::shared_ptr<Piece>> pieces;
+        Color color;
+        std::map<Position, std::shared_ptr<Piece>> pieces;
 };
