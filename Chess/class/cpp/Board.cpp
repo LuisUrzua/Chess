@@ -1,12 +1,41 @@
 #include "../hpp/Board.h"
+#include <iostream>
 
 Board::Board()
 {
-    for (int row = ROW_1; row <= ROW_8; row++)
+    for (int col = COL_A; col <= COL_H; col++)
     {
-        for (int col = COL_A; col <= COL_H; col++)
+        for (int row = ROW_1; row <= ROW_8; row++)
         {
-            squares[Position(row, col)] = std::shared_ptr<Square>(new Square(Position(row, col)));
+            squares[Position(col, row)] = std::shared_ptr<Square>(new Square(Position(col, row)));
         }
+    }
+}
+
+void Board::displayBoard()
+{
+    system("cls");
+    /*std::cout << " A B C D E F G H" << std::endl;
+    std::cout << "-----------------" << std::endl;*/
+    const int colsPerSquare = 7;
+    const int rowsPerSquare = 3;
+    int cursorX = 0, cursorY = 0;
+
+    for (int i = 0, row = ROW_8; row >= ROW_1; row--, i++)
+    {
+        for (int j = 0, col = COL_A; col <= COL_H; col++, j++)
+        {
+            cursorX = colsPerSquare * j;
+            cursorY = rowsPerSquare * i;
+            squares[Position(col, row)]->displaySquare(cursorX, cursorY);
+        }
+    }
+
+    std::cout << std::endl;
+    const std::string columns[] = { "A", "B", "C", "D", "E", "F", "G", "H" };
+
+    for (const std::string & column : columns)
+    {
+        std::cout << "   " << column << "   ";
     }
 }

@@ -10,6 +10,7 @@ class Piece
         Color getColor() const;
         Type getType() const;
         void setPosition(const Position);
+        virtual void displayPiece() = 0;
         virtual void move() = 0;
 
     private:

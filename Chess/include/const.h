@@ -1,21 +1,10 @@
 #pragma once
 
-#define SQUARES	64
-#define NUM_PIECES  16
-#define ROWS    8
+#define WHITE_SQUARE 0xDB
+#define BLACK_SQUARE 0xFF
 
 enum class Color { White, Black };
 enum class Type { Pawn, Knight, Bishop, Rook, Queen, King };
-
-const int ROW_1 = 1;
-const int ROW_2 = 2;
-const int ROW_3 = 3;
-const int ROW_4 = 4;
-const int ROW_5 = 5;
-const int ROW_6 = 6;
-const int ROW_7 = 7;
-const int ROW_8 = 8;
-const int ROW_0 = -1;
 
 const int COL_A = 1;
 const int COL_B = 2;
@@ -27,30 +16,40 @@ const int COL_G = 7;
 const int COL_H = 8;
 const int COL_Z = -1;
 
+const int ROW_1 = 1;
+const int ROW_2 = 2;
+const int ROW_3 = 3;
+const int ROW_4 = 4;
+const int ROW_5 = 5;
+const int ROW_6 = 6;
+const int ROW_7 = 7;
+const int ROW_8 = 8;
+const int ROW_0 = -1;
+
 struct Position
 {
-    int row;
     int col;
+    int row;
 
     Position()
     {
-        row = ROW_0;
         col = COL_Z;
+        row = ROW_0;
     }
 
-    Position(int row, int col)
+    Position(int col, int row)
     {
-        this->row = row;
         this->col = col;
+        this->row = row;
     }
 
     bool operator==(const Position& other) const
     {
-        return this->row == other.row && this->col == other.col;
+        return this->col == other.col && this->row == other.row;
     }
 
     bool operator<(const Position& other) const
     {
-        return this->row < other.row || (this->row == other.row && this->col < other.col);
+        return this->col < other.col || (this->col == other.col && this->row < other.row);
     }
 };
