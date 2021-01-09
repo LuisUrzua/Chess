@@ -1,4 +1,5 @@
 #include "../hpp/Square.h"
+#include "../hpp/Piece.h"
 #include <iostream>
 #include <Windows.h>
 #include <string>
@@ -72,7 +73,7 @@ void Square::displaySquare(const int &startingX, const int &startingY)
             }
             if (i == midRow && this->position.col == COL_H && j == (colsPerSquare - 1))
             {
-                std::cout << " " << std::to_string(this->position.row);
+                std::cout << "   " << std::to_string(this->position.row);
             }
         }
     }

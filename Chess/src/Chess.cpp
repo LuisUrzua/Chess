@@ -4,9 +4,12 @@
 
 int main()
 {
-    //std::cout << "Chess Program!" << std::endl;
     Board b = Board();
     b.displayBoard();
+
+
+
+    std::cout << std::endl << std::endl << std::endl << std::endl;
     
     return 0;
 }

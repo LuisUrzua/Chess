@@ -54,3 +54,8 @@ Player::Player(Color color)
         /* Something went wrong */
     }
 }
+
+MapPiece& Player::getPieces()
+{
+    return pieces;
+}

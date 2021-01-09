@@ -1,17 +1,25 @@
 #pragma once
 
+#include "../../include/const.h"
 #include <map>
-#include "Square.h"
 #include <memory>
+
+class Square;
+class Player;
+
+typedef std::map<Position, std::shared_ptr<Square>> MapSquare;
+typedef std::shared_ptr<Player> PtrPlayer;
 
 class Board
 {
     public:
         Board();
         void displayBoard();
-        void setCursor(const int, const int);
+        void setupPieces();
 
     private:
-        std::map<Position, std::shared_ptr<Square>> squares;
+        MapSquare squares;
+        PtrPlayer whitePlayer;
+        PtrPlayer blackPlayer;
 };
 

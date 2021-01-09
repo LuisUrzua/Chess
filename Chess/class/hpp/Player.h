@@ -5,12 +5,15 @@
 #include <map>
 #include <memory>
 
+typedef std::map<Position, std::shared_ptr<Piece>> MapPiece;
+
 class Player
 {
     public:
         Player(Color);
+        MapPiece& getPieces();
 
     private:
         Color color;
-        std::map<Position, std::shared_ptr<Piece>> pieces;
+        MapPiece pieces;
 };

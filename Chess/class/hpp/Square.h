@@ -1,8 +1,11 @@
 #pragma once
 
 #include "../../include/const.h"
-#include "Piece.h"
 #include <memory>
+
+class Piece;
+
+typedef std::shared_ptr<Piece> PtrPiece;
 
 class Square
 {
@@ -15,6 +18,6 @@ class Square
 
 	private:
 		Position position;
-		std::shared_ptr<Piece> piece;
+		PtrPiece piece;
 };
 
