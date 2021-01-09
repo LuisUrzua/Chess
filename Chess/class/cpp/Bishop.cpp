@@ -1,5 +1,6 @@
 #include "../hpp/Bishop.h"
 #include <iostream>
+#include <Windows.h>
 
 Bishop::Bishop(Position position, Color color, Type type) : Piece(position, color, type)
 {
@@ -10,11 +11,19 @@ void Bishop::displayPiece()
 {
     if (this->getColor() == Color::White)
     {
-        std::cout << "B";
+        char bishopWhite[] = "\xE2\x99\x9D";
+        UINT defaultCP = GetConsoleOutputCP();
+        SetConsoleOutputCP(CODE_PAGE);
+        printf(bishopWhite);
+        SetConsoleOutputCP(defaultCP);
     }
     else if (this->getColor() == Color::Black)
     {
-        std::cout << "b";
+        char bishopBlack[] = "\xE2\x99\x97";
+        UINT defaultCP = GetConsoleOutputCP();
+        SetConsoleOutputCP(CODE_PAGE);
+        printf(bishopBlack);
+        SetConsoleOutputCP(defaultCP);
     }
     else
     {

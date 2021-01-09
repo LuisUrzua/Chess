@@ -60,6 +60,24 @@ void Square::displaySquare(const int &startingX, const int &startingY)
                     this->piece->displayPiece();
                 }
             }
+            else if (i == midRow && j == (midCol + 1))
+            {
+                if (this->isEmpty())
+                {
+                    if (color == Color::White)
+                    {
+                        std::cout << char(WHITE_SQUARE);
+                    }
+                    else
+                    {
+                        std::cout << char(BLACK_SQUARE);
+                    }
+                }
+                else
+                {
+                    std::cout << char(BLACK_SQUARE);
+                }
+            }
             else
             {
                 if (color == Color::White)

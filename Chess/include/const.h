@@ -3,6 +3,8 @@
 #define WHITE_SQUARE 0xDB
 #define BLACK_SQUARE 0xFF
 
+#define CODE_PAGE 65001
+
 enum class Color { White, Black };
 enum class Type { Pawn, Knight, Bishop, Rook, Queen, King };
 
