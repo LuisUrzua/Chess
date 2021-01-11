@@ -1,13 +1,13 @@
 #pragma once
 
 #include "../../include/const.h"
-#include <map>
-#include <memory>
+#include <string>
 
 class Player
 {
     public:
         Player(Color);
+        std::string nextMove();
 
     private:
         Color color;

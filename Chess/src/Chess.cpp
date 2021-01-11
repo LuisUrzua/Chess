@@ -31,7 +31,6 @@ int main()
 
     board->displayBoard();
 
-
     std::cout << std::endl << std::endl << std::endl << std::endl;
     
     return 0;

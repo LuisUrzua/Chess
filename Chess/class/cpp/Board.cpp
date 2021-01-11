@@ -38,6 +38,8 @@ void Board::displayBoard()
     {
         std::cout << "   " << column << "   ";
     }
+
+    std::cout << std::endl << std::endl;
 }
 
 void Board::insertPiece(const PtrPiece & piece)
