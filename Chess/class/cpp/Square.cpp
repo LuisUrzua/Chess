@@ -27,6 +27,18 @@ void Square::insertPiece(const std::shared_ptr<Piece> &piece)
     }
 }
 
+void Square::removePiece()
+{
+    if (this->isEmpty())
+    {
+        // This does nothing
+    }
+    else
+    {
+        this->piece.reset();
+    }
+}
+
 void Square::displaySquare(const int &startingX, const int &startingY)
 {
     const int colsPerSquare = 7;

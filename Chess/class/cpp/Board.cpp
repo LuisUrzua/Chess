@@ -1,13 +1,10 @@
 #include "../hpp/Board.h"
-#include <iostream>
 #include "../hpp/Square.h"
-#include "../hpp/Player.h"
+#include "../hpp/Piece.h"
+#include <iostream>
 
 Board::Board()
 {
-    whitePlayer = std::shared_ptr<Player>(new Player(Color::White));
-    blackPlayer = std::shared_ptr<Player>(new Player(Color::Black));
-
     for (int col = COL_A; col <= COL_H; col++)
     {
         for (int row = ROW_1; row <= ROW_8; row++)
@@ -15,8 +12,6 @@ Board::Board()
             squares[Position(col, row)] = std::shared_ptr<Square>(new Square(Position(col, row)));
         }
     }
-
-    setupPieces();
 }
 
 void Board::displayBoard()
@@ -45,18 +40,7 @@ void Board::displayBoard()
     }
 }
 
-void Board::setupPieces()
+void Board::insertPiece(const PtrPiece & piece)
 {
-    MapPiece whitePieces = whitePlayer->getPieces();
-    MapPiece blackPieces = blackPlayer->getPieces();
-    
-    for (auto const & piece : whitePieces)
-    {
-        squares[piece.first]->insertPiece(piece.second);
-    }
-
-    for (auto const& piece : blackPieces)
-    {
-        squares[piece.first]->insertPiece(piece.second);
-    }
+    squares[piece->getPosition()]->insertPiece(piece);
 }

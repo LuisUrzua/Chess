@@ -5,21 +5,19 @@
 #include <memory>
 
 class Square;
-class Player;
+class Piece;
 
+typedef std::shared_ptr<Piece> PtrPiece;
 typedef std::map<Position, std::shared_ptr<Square>> MapSquare;
-typedef std::shared_ptr<Player> PtrPlayer;
 
 class Board
 {
     public:
         Board();
         void displayBoard();
-        void setupPieces();
+        void insertPiece(const PtrPiece &);
 
     private:
         MapSquare squares;
-        PtrPlayer whitePlayer;
-        PtrPlayer blackPlayer;
 };
 
