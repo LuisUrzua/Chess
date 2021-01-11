@@ -7,7 +7,7 @@ class Queen : public Piece
     public:
         Queen(Position, Color, Type);
         void displayPiece();
-        void  move();
+        bool validMove(const Position &);
 
     private:
 

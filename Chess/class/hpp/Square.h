@@ -13,6 +13,7 @@ class Square
 		Square(Position);
 		bool isEmpty() const;
 		void insertPiece(const std::shared_ptr<Piece> &);
+		PtrPiece getPiece() const;
 		void removePiece();
 		void displaySquare(const int &, const int &);
 		void setCursor(const int&, const int&);

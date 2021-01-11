@@ -32,7 +32,7 @@ void Bishop::displayPiece()
     
 }
 
-void Bishop::move()
+bool Bishop::validMove(const Position &newPosition)
 {
-
+    return false;
 }

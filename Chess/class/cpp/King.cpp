@@ -31,7 +31,7 @@ void King::displayPiece()
     }
 }
 
-void King::move()
+bool King::validMove(const Position& newPosition)
 {
-
+    return false;
 }

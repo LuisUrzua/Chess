@@ -16,6 +16,7 @@ class Board
         Board();
         void displayBoard();
         void insertPiece(const PtrPiece &);
+        PtrPiece getPiece(const Position) ;
 
     private:
         MapSquare squares;

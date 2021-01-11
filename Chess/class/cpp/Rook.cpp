@@ -31,7 +31,7 @@ void Rook::displayPiece()
     }
 }
 
-void Rook::move()
+bool Rook::validMove(const Position& newPosition)
 {
-
+    return false;
 }

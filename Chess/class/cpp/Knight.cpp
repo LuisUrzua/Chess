@@ -31,7 +31,7 @@ void Knight::displayPiece()
     }
 }
 
-void Knight::move()
+bool Knight::validMove(const Position & newPosition)
 {
-
+    return false;
 }

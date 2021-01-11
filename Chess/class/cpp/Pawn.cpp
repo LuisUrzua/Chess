@@ -31,7 +31,7 @@ void Pawn::displayPiece()
     }
 }
 
-void Pawn::move()
+bool Pawn::validMove(const Position & newPosition)
 {
-
+    return false;
 }

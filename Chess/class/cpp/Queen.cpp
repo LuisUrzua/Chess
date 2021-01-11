@@ -31,7 +31,7 @@ void Queen::displayPiece()
     }
 }
 
-void Queen::move()
+bool Queen::validMove(const Position & newPosition)
 {
-
+    return false;
 }

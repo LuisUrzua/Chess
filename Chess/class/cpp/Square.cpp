@@ -27,6 +27,11 @@ void Square::insertPiece(const std::shared_ptr<Piece> &piece)
     }
 }
 
+PtrPiece Square::getPiece() const
+{
+    return this->piece;
+}
+
 void Square::removePiece()
 {
     if (this->isEmpty())
