@@ -1,10 +1,13 @@
 #include "../hpp/Pawn.h"
+#include "../hpp/Board.h"
 #include <iostream>
 #include <Windows.h>
 
+typedef std::shared_ptr<Piece> PtrPiece;
+
 Pawn::Pawn(Position position, Color color, Type type) : Piece(position, color, type)
 {
-
+    this->firstMove = true;
 }
 
 void Pawn::displayPiece()
@@ -31,7 +34,58 @@ void Pawn::displayPiece()
     }
 }
 
-bool Pawn::validMove(const Position & newPosition)
+bool Pawn::isValidMove(const Position& newPosition, PtrBoard& board)
+{
+    bool isValid = false;
+    Position currentPosition = this->getPosition();
+    const int colOffset = 0;
+    const int rowOffset = 1;
+    const int doubleOffset = 2;
+    //PtrPiece pieceOnNewSquare = board->getPiece(newPosition);
+    Position intermediateSquare = newPosition;
+    intermediateSquare.row += (this->getColor() == Color::White) ? 1 : -1;
+
+
+    if (this->getColor() == Color::White)
+    {
+        if ((newPosition.col - currentPosition.col) == colOffset &&
+            (newPosition.row - currentPosition.row) == rowOffset &&
+            board->isEmptySquare(newPosition))
+        {
+            isValid = true;
+        }
+        else if ((newPosition.col - currentPosition.col) == colOffset &&
+            (newPosition.row - currentPosition.row) == doubleOffset && 
+            board->isEmptySquare(newPosition) &&
+            board->isEmptySquare(intermediateSquare) &&
+            firstMove)
+        {
+            isValid = true;
+        }
+    }
+    else
+    {
+
+    }
+
+    return isValid;
+}
+
+bool Pawn::isValidAttack(const Position&, PtrBoard&)
 {
     return false;
+}
+
+bool isMoveValid(const Position& newSquare, PtrBoard& board)
+{
+    bool isValid = false;
+
+    return isValid;
+}
+
+bool isAttackValid(const Position& newSquare, PtrBoard& board)
+{
+    bool isValid = false;
+
+    return isValid;
 }

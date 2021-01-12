@@ -5,8 +5,8 @@
 
 #define CODE_PAGE 65001
 
-enum class Color { White, Black };
-enum class Type { Pawn, Knight, Bishop, Rook, Queen, King };
+enum class Color { White, Black, Empty };
+enum class Type { Pawn, Knight, Bishop, Rook, Queen, King, Empty };
 
 const int COL_A = 1;
 const int COL_B = 2;

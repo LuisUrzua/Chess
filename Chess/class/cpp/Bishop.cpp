@@ -32,7 +32,12 @@ void Bishop::displayPiece()
     
 }
 
-bool Bishop::validMove(const Position &newPosition)
+bool Bishop::isValidMove(const Position& newPosition, PtrBoard& board)
+{
+    return false;
+}
+
+bool Bishop::isValidAttack(const Position&, PtrBoard&)
 {
     return false;
 }

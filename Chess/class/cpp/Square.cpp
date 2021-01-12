@@ -116,7 +116,9 @@ void Square::displaySquare(const int &startingX, const int &startingY)
 
 void Square::setCursor(const int & x, const int & y)
 {
+    short col_x = (short)x;
+    short row_y = (short)y;
     HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
-    COORD pos = { x, y };
+    COORD pos = { col_x, row_y };
     SetConsoleCursorPosition(output, pos);
 }

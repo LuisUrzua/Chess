@@ -7,7 +7,8 @@ class King : public Piece
     public:
         King(Position, Color, Type);
         void displayPiece();
-        bool validMove(const Position &);
+        bool isValidMove(const Position&, PtrBoard&);
+        bool isValidAttack(const Position&, PtrBoard&);
     
     private:
         

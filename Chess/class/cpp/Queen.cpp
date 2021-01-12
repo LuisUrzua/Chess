@@ -31,7 +31,12 @@ void Queen::displayPiece()
     }
 }
 
-bool Queen::validMove(const Position & newPosition)
+bool Queen::isValidMove(const Position& newPosition, PtrBoard& board)
+{
+    return false;
+}
+
+bool Queen::isValidAttack(const Position&, PtrBoard&)
 {
     return false;
 }

@@ -1,6 +1,11 @@
 #pragma once
 
 #include "../../include/const.h"
+#include <memory>
+
+class Board;
+
+typedef std::shared_ptr<Board> PtrBoard;
 
 class Piece
 {
@@ -11,7 +16,8 @@ class Piece
         Type getType() const;
         void setPosition(const Position);
         virtual void displayPiece() = 0;
-        virtual bool validMove(const Position &) = 0;
+        virtual bool isValidMove(const Position&, PtrBoard&) = 0;
+        virtual bool isValidAttack(const Position&, PtrBoard&) = 0;
 
     private:
         Position position;

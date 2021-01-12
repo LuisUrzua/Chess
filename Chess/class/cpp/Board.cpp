@@ -47,8 +47,13 @@ void Board::insertPiece(const PtrPiece & piece)
     squares[piece->getPosition()]->insertPiece(piece);
 }
 
-PtrPiece Board::getPiece(const Position position)
+PtrPiece Board::getPiece(const Position& position)
 {
     // May return null if no piece is at this square
     return squares[position]->getPiece();
+}
+
+bool Board::isEmptySquare(const Position& position)
+{
+    return squares[position]->isEmpty();
 }

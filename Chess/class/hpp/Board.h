@@ -15,8 +15,9 @@ class Board
     public:
         Board();
         void displayBoard();
-        void insertPiece(const PtrPiece &);
-        PtrPiece getPiece(const Position) ;
+        void insertPiece(const PtrPiece&);
+        PtrPiece getPiece(const Position&);
+        bool isEmptySquare(const Position&);
 
     private:
         MapSquare squares;

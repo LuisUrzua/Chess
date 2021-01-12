@@ -31,7 +31,12 @@ void Knight::displayPiece()
     }
 }
 
-bool Knight::validMove(const Position & newPosition)
+bool Knight::isValidMove(const Position& newPosition, PtrBoard& board)
+{
+    return false;
+}
+
+bool Knight::isValidAttack(const Position&, PtrBoard&)
 {
     return false;
 }

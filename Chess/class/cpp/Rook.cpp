@@ -31,7 +31,12 @@ void Rook::displayPiece()
     }
 }
 
-bool Rook::validMove(const Position& newPosition)
+bool Rook::isValidMove(const Position& newPosition, PtrBoard& board)
+{
+    return false;
+}
+
+bool Rook::isValidAttack(const Position&, PtrBoard&)
 {
     return false;
 }

@@ -31,7 +31,12 @@ void King::displayPiece()
     }
 }
 
-bool King::validMove(const Position& newPosition)
+bool King::isValidMove(const Position& newPosition, PtrBoard& board)
+{
+    return false;
+}
+
+bool King::isValidAttack(const Position&, PtrBoard&)
 {
     return false;
 }
