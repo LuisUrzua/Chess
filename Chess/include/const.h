@@ -54,4 +54,14 @@ struct Position
     {
         return this->col < other.col || (this->col == other.col && this->row < other.row);
     }
+
+    bool operator!=(const Position& other) const
+    {
+        return this->col != other.col || this->row != other.row;
+    }
+
+    bool isWithinBounds() const
+    {
+        return (this->col >= COL_A && this->col <= COL_H && this->row >= ROW_1 && this->row <= ROW_8) ? true : false;
+    }
 };

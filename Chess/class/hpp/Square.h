@@ -12,14 +12,19 @@ class Square
 	public:
 		Square(Position);
 		bool isEmpty() const;
-		void insertPiece(const std::shared_ptr<Piece> &);
+		void insertPiece(const PtrPiece &);
 		PtrPiece getPiece() const;
 		void removePiece();
 		void displaySquare(const int &, const int &);
 		void setCursor(const int&, const int&);
+		void attackSquare(const Color);
+		void resetAttackers();
+		bool isSafe(Color);
 
 	private:
 		Position position;
 		PtrPiece piece;
+		int whiteAttackers;
+		int blackAttackers;
 };
 

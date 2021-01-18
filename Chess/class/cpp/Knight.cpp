@@ -1,4 +1,5 @@
 #include "../hpp/Knight.h"
+#include "../hpp/Board.h"
 #include <iostream>
 #include <Windows.h>
 
@@ -31,12 +32,204 @@ void Knight::displayPiece()
     }
 }
 
-bool Knight::isValidMove(const Position& newPosition, PtrBoard& board)
+void Knight::updateMoveList(PtrBoard& board)
 {
-    return false;
-}
+    this->moves.clear();
+    Position position = this->getPosition();
+    Position destination;
+    Color color = this->getColor();
+    const int offset1 = 1;
+    const int offset2 = 2;
 
-bool Knight::isValidAttack(const Position&, PtrBoard&)
-{
-    return false;
+    // Up(2) & Right(1)
+    destination = position;
+    destination.row += offset2;
+    destination.col += offset1;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
+
+    // Up(1) & Right(2)
+    destination = position;
+    destination.row += offset1;
+    destination.col += offset2;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
+
+    // Down(1) & Right(2)
+    destination = position;
+    destination.row -= offset1;
+    destination.col += offset2;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
+
+    // Down(2) & Right(1)
+    destination = position;
+    destination.row -= offset2;
+    destination.col += offset1;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
+
+    // Down(2) & Left(1)
+    destination = position;
+    destination.row -= offset2;
+    destination.col -= offset1;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
+
+    // Down(1) & Left(2)
+    destination = position;
+    destination.row -= offset1;
+    destination.col -= offset2;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
+
+    // Up(1) & Left(2)
+    destination = position;
+    destination.row += offset1;
+    destination.col -= offset2;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
+
+    // Up(2) & Left(1)
+    destination = position;
+    destination.row += offset2;
+    destination.col -= offset1;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+        }
+    }
 }

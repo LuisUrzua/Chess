@@ -7,10 +7,9 @@ class Pawn : public Piece
     public:
         Pawn(Position, Color, Type);
         void displayPiece();
-        bool isValidMove(const Position&, PtrBoard&);
-        bool isValidAttack(const Position&, PtrBoard&);
+        bool isEnpassant() const;
+        void updateMoveList(PtrBoard&);
 
     private:
-        bool firstMove;
 };
 

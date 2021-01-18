@@ -1,4 +1,5 @@
 #include "../hpp/Bishop.h"
+#include "../hpp/Board.h"
 #include <iostream>
 #include <Windows.h>
 
@@ -32,12 +33,138 @@ void Bishop::displayPiece()
     
 }
 
-bool Bishop::isValidMove(const Position& newPosition, PtrBoard& board)
+void Bishop::updateMoveList(PtrBoard& board)
 {
-    return false;
-}
+    this->moves.clear();
+    Position position = this->getPosition();
+    Color color = this->getColor();
+    const int longestDiagonal = 8;
 
-bool Bishop::isValidAttack(const Position&, PtrBoard&)
-{
-    return false;
+    // Up & Right
+    for (int i = 1; i <= longestDiagonal; i++)
+    {
+        Position destination = position;
+        destination.row += i;
+        destination.col += i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the diagonal
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
+
+    // Down & Right
+    for (int i = 1; i <= longestDiagonal; i++)
+    {
+        Position destination = position;
+        destination.row -= i;
+        destination.col += i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the diagonal
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
+
+    // Up & Left
+    for (int i = 1; i <= longestDiagonal; i++)
+    {
+        Position destination = position;
+        destination.row += i;
+        destination.col -= i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the diagonal
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
+
+    // Down & Left
+    for (int i = 1; i <= longestDiagonal; i++)
+    {
+        Position destination = position;
+        destination.row -= i;
+        destination.col -= i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the diagonal
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+            
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+            
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
 }

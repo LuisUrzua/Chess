@@ -7,6 +7,8 @@
 Square::Square(Position position)
 {
     this->position = position;
+    this->whiteAttackers = 0;
+    this->blackAttackers = 0;
 }
 
 bool Square::isEmpty() const
@@ -14,7 +16,7 @@ bool Square::isEmpty() const
     return (!(this->piece)) ? true : false;
 }
 
-void Square::insertPiece(const std::shared_ptr<Piece> &piece)
+void Square::insertPiece(const PtrPiece &piece)
 {
     if (this->isEmpty())
     {
@@ -121,4 +123,44 @@ void Square::setCursor(const int & x, const int & y)
     HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD pos = { col_x, row_y };
     SetConsoleCursorPosition(output, pos);
+}
+
+void Square::attackSquare(const Color color)
+{
+    if (color == Color::White)
+    {
+        this->whiteAttackers++;
+    }
+    else if (color == Color::Black)
+    {
+        this->blackAttackers++;
+    }
+}
+
+void Square::resetAttackers()
+{
+    this->whiteAttackers = 0;
+    this->blackAttackers = 0;
+}
+
+bool Square::isSafe(Color color)
+{
+    bool safe = false;
+
+    if (color == Color::White)
+    {
+        if (blackAttackers == 0)
+        {
+            safe = true;
+        }
+    }
+    else if (color == Color::Black)
+    {
+        if (whiteAttackers == 0)
+        {
+            safe = true;
+        }
+    }
+
+    return safe;
 }

@@ -1,4 +1,5 @@
 #include "../hpp/King.h"
+#include "../hpp/Board.h"
 #include <iostream>
 #include <Windows.h>
 
@@ -31,12 +32,229 @@ void King::displayPiece()
     }
 }
 
-bool King::isValidMove(const Position& newPosition, PtrBoard& board)
+void King::updateMoveList(PtrBoard& board)
 {
-    return false;
-}
+    this->moves.clear();
+    Position position = this->getPosition();
+    Position destination;
+    Color color = this->getColor();
+    const int offset = 1;
 
-bool King::isValidAttack(const Position&, PtrBoard&)
-{
-    return false;
+    // Col(0), Row(1) 
+    destination = position;
+    destination.col += 0;
+    destination.row += offset;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+    // Col(1), Row(1) 
+    destination = position;
+    destination.col += offset;
+    destination.row += offset;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+    // Col(1), Row(0) 
+    destination = position;
+    destination.col += offset;
+    destination.row += 0;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+    // Col(1), Row(-1) 
+    destination = position;
+    destination.col += offset;
+    destination.row -= offset;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+    // Col(0), Row(-1) 
+    destination = position;
+    destination.col += 0;
+    destination.row -= offset;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+    // Col(-1), Row(-1) 
+    destination = position;
+    destination.col -= offset;
+    destination.row -= offset;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+    // Col(-1), Row(0) 
+    destination = position;
+    destination.col -= offset;
+    destination.row += 0;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+    // Col(-1), Row(1) 
+    destination = position;
+    destination.col -= offset;
+    destination.row += offset;
+
+    if (destination.isWithinBounds())
+    {
+        board->attackSquare(destination, color);
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                if (board->isSafe(destination, color))
+                {
+                    this->moves.push_back(destination);
+                }
+            }
+        }
+    }
+
+
 }

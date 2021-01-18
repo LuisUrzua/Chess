@@ -1,4 +1,5 @@
 #include "../hpp/Rook.h"
+#include "../hpp/Board.h"
 #include <iostream>
 #include <Windows.h>
 
@@ -31,12 +32,134 @@ void Rook::displayPiece()
     }
 }
 
-bool Rook::isValidMove(const Position& newPosition, PtrBoard& board)
+void Rook::updateMoveList(PtrBoard& board)
 {
-    return false;
-}
+    this->moves.clear();
+    Position position = this->getPosition();
+    Color color = this->getColor();
+    const int max = 8;
 
-bool Rook::isValidAttack(const Position&, PtrBoard&)
-{
-    return false;
+    // Up
+    for (int i = 1; i <= max; i++)
+    {
+        Position destination = position;
+        destination.row += i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the range
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
+
+    // Right
+    for (int i = 1; i <= max; i++)
+    {
+        Position destination = position;
+        destination.col += i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the range
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
+
+    // Down
+    for (int i = 1; i <= max; i++)
+    {
+        Position destination = position;
+        destination.row -= i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the range
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
+
+    // Left
+    for (int i = 1; i <= max; i++)
+    {
+        Position destination = position;
+        destination.col -= i;
+
+        if (!destination.isWithinBounds())
+        {
+            // Break - no point checking the rest of the range
+            break;
+        }
+
+        if (board->isEmptySquare(destination))
+        {
+            this->moves.push_back(destination);
+            board->attackSquare(destination, color);
+        }
+        else
+        {
+            PtrPiece enemy = board->getPiece(destination);
+
+            if (enemy->getColor() != color)
+            {
+                this->moves.push_back(destination);
+            }
+
+            board->attackSquare(destination, color);
+            break;
+        }
+    }
 }

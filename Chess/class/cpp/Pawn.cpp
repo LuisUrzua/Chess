@@ -7,7 +7,7 @@ typedef std::shared_ptr<Piece> PtrPiece;
 
 Pawn::Pawn(Position position, Color color, Type type) : Piece(position, color, type)
 {
-    this->firstMove = true;
+
 }
 
 void Pawn::displayPiece()
@@ -34,58 +34,116 @@ void Pawn::displayPiece()
     }
 }
 
-bool Pawn::isValidMove(const Position& newPosition, PtrBoard& board)
-{
-    bool isValid = false;
-    Position currentPosition = this->getPosition();
-    const int colOffset = 0;
-    const int rowOffset = 1;
-    const int doubleOffset = 2;
-    //PtrPiece pieceOnNewSquare = board->getPiece(newPosition);
-    Position intermediateSquare = newPosition;
-    intermediateSquare.row += (this->getColor() == Color::White) ? 1 : -1;
-
-
-    if (this->getColor() == Color::White)
-    {
-        if ((newPosition.col - currentPosition.col) == colOffset &&
-            (newPosition.row - currentPosition.row) == rowOffset &&
-            board->isEmptySquare(newPosition))
-        {
-            isValid = true;
-        }
-        else if ((newPosition.col - currentPosition.col) == colOffset &&
-            (newPosition.row - currentPosition.row) == doubleOffset && 
-            board->isEmptySquare(newPosition) &&
-            board->isEmptySquare(intermediateSquare) &&
-            firstMove)
-        {
-            isValid = true;
-        }
-    }
-    else
-    {
-
-    }
-
-    return isValid;
-}
-
-bool Pawn::isValidAttack(const Position&, PtrBoard&)
+bool Pawn::isEnpassant() const
 {
     return false;
 }
 
-bool isMoveValid(const Position& newSquare, PtrBoard& board)
+void Pawn::updateMoveList(PtrBoard& board)
 {
-    bool isValid = false;
+    this->moves.clear();
+    Position position = this->getPosition();
+    Color color = this->getColor();
+    const int zero = 0;
+    const int leftCol = -1;
+    const int rightCol = 1;
+    int oneRow;
+    int twoRow;
 
-    return isValid;
-}
+    switch (color)
+    {
+        case Color::White:
+            oneRow = 1;
+            twoRow = 2;
+            break;
+        case Color::Black:
+            oneRow = -1;
+            twoRow = -2;
+            break;
+        default:
+            // Something went wrong
+            return;
+    } 
 
-bool isAttackValid(const Position& newSquare, PtrBoard& board)
-{
-    bool isValid = false;
+    Position forward1(position.col + zero, position.row + oneRow);
+    Position forward2(position.col + zero, position.row + twoRow);
+    Position captureL(position.col + leftCol, position.row + oneRow);
+    Position captureR(position.col + rightCol, position.row + oneRow);
+    
+    if (board->isEmptySquare(forward1) && forward1.isWithinBounds())
+    {
+        this->moves.push_back(forward1);
+    }
 
-    return isValid;
+    if (board->isEmptySquare(forward2) && forward2.isWithinBounds())
+    {
+        this->moves.push_back(forward2);
+    }
+
+    if (!board->isEmptySquare(captureL) && captureL.isWithinBounds())
+    {
+        PtrPiece enemy = board->getPiece(captureL);
+        
+        if (enemy->getColor() != color)
+        {
+            this->moves.push_back(captureL);
+            board->attackSquare(captureL, this->getColor());
+        }
+    }
+
+    if (!board->isEmptySquare(captureR) && captureR.isWithinBounds())
+    {
+        PtrPiece enemy = board->getPiece(captureR);
+
+        if (enemy->getColor() != color)
+        {
+            this->moves.push_back(captureR);
+            board->attackSquare(captureR, this->getColor());
+        }
+    }
+
+    // En passant capture
+    if (board->isEmptySquare(captureL) && captureL.isWithinBounds())
+    {
+        Position enpassant(captureL.col, captureL.row);
+        enpassant.row += (this->getColor() == Color::White) ? -1 : 1;
+
+        if (!board->isEmptySquare(enpassant))
+        {
+            PtrPiece enemy = board->getPiece(enpassant);
+
+            if (enemy->getColor() != color && enemy->getType() == Type::Pawn)
+            {
+                std::shared_ptr<Pawn> enemyPawn = std::dynamic_pointer_cast<Pawn> (enemy);
+
+                if (enemyPawn->isEnpassant())
+                {
+                    this->moves.push_back(captureL);
+                    board->attackSquare(captureL, this->getColor());
+                }
+            }
+        }
+    }
+    // En passant capture
+    if (board->isEmptySquare(captureR) && captureR.isWithinBounds())
+    {
+        Position enpassant(captureR.col, captureR.row);
+        enpassant.row += (this->getColor() == Color::White) ? -1 : 1;
+        
+        if (!board->isEmptySquare(enpassant))
+        {
+            PtrPiece enemy = board->getPiece(enpassant);
+
+            if (enemy->getColor() != color && enemy->getType() == Type::Pawn)
+            {
+                std::shared_ptr<Pawn> enemyPawn = std::dynamic_pointer_cast<Pawn> (enemy);
+
+                if (enemyPawn->isEnpassant())
+                {
+                    this->moves.push_back(captureR);
+                    board->attackSquare(captureR, this->getColor());
+                }
+            }
+        }
+    }
 }
